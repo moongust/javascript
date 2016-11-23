@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>JQuery</title>
+    <script src="jquery-3.1.1.js"></script>
+    <script>
+        //JS - Ожидание загрузки окна (создание DOM модели)
+        window.onload = function () {
+            console.log("Окно готово - window.onload");
+        };
+        //JQuery - Ожидание загрузки окна (создание DOM модели)
+        $(window).on('load', function () {
+                console.log("Окно готово - JQuery");
+            })
+            //Метод 3 - загрузка документа (построена DOM модель, могут не быть загружены картинки и скрипты)
+        $(document).ready(function () {
+            //Изменение элементов
+            $('.d1').text('Теск создан с помощью JQuery').css('color', 'red');
+            //Создание элементов
+            $('<b>New Text</b>').appendTo($('body'));
+            console.log("Окно готово - JQuery - 1");
+        });
+        //Дожидаемся загрузки документа, метод 2
+        $(function () {
+            console.log("Окно готово - JQuery - 2");
+        });
+        //Дожидаемся загрузки скрипта, функция getName запустится только после загрузки скрипта
+
+        $(function () {
+                console.log(getName('Max'));
+            })
+            // Запрещает выдавать событие ready до вызова $.holdReady(fa<script type="javascript" src="javascript1.js" />lse)
+        $.holdReady(true);
+        // Эмуляция задержки при загрузке скрипта
+        setTimeout(function () {
+            $.getScript('main.js', $.holdReady(false));
+        }, 1000);
+    </script>
+</head>
+
+<body>
+
+    <div class="d1"></div>
+
+</body>
+
+</html>
